@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EchoSee – Contact + FAQ + Footer </title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+<!-- ══════════ CONTACT ══════════ -->
+<section id="contact" aria-labelledby="contact-heading">
+  <p class="section-label">Get In Touch</p>
+  <h2 class="section-title" id="contact-heading">Contact Us</h2>
+  <p class="section-sub">Have questions about EchoSee? Our team responds within 24 hours. We'd love to hear from you.</p>
+
+  <div class="contact-grid">
+
+    <!-- Info -->
+    <aside class="info-panel" aria-label="Contact information">
+      <div class="info-card">
+        <div class="info-icon" aria-hidden="true">📧</div>
+        <div>
+          <h4>Email</h4>
+          <p>hello@echosee.pk</p>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon" aria-hidden="true">📞</div>
+        <div>
+          <h4>Phone</h4>
+          <p>+92 300 1234567</p>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon" aria-hidden="true">📍</div>
+        <div>
+          <h4>Address</h4>
+          <p>EchoSee HQ, Islamabad, Pakistan</p>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon" aria-hidden="true">🌐</div>
+        <div>
+          <h4>Follow Us</h4>
+          <div class="social-row">
+            <a href="#" class="social-btn" aria-label="Facebook">f</a>
+            <a href="#" class="social-btn" aria-label="Instagram">ig</a>
+            <a href="#" class="social-btn" aria-label="Twitter / X">𝕏</a>
+            <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Form -->
+    <div class="form-panel">
+      <form id="contactForm" novalidate aria-label="Send us a message">
+        <div class="form-row">
+          <div class="field-group">
+            <input type="text" id="fname" placeholder=" " autocomplete="given-name" required aria-required="true" />
+            <label for="fname">First Name</label>
+          </div>
+          <div class="field-group">
+            <input type="text" id="lname" placeholder=" " autocomplete="family-name" required aria-required="true" />
+            <label for="lname">Last Name</label>
+          </div>
+          <div class="field-group">
+            <input type="email" id="email" placeholder=" " autocomplete="email" required aria-required="true" />
+            <label for="email">Email Address</label>
+          </div>
+          <div class="field-group">
+            <input type="tel" id="phone" placeholder=" " autocomplete="tel" />
+            <label for="phone">Phone (optional)</label>
+          </div>
+          <div class="field-group full">
+            <select id="subject" aria-label="Subject">
+              <option value="" disabled selected></option>
+              <option>Pre-Order Enquiry</option>
+              <option>Product Support</option>
+              <option>Partnership</option>
+              <option>Press / Media</option>
+              <option>Other</option>
+            </select>
+            <label for="subject">Subject</label>
+          </div>
+          <div class="field-group full">
+            <textarea id="message" placeholder=" " required aria-required="true"></textarea>
+            <label for="message">Your Message</label>
+          </div>
+        </div>
+        <button type="submit" class="btn-submit">
+          <span>Send Message</span>
+          <span aria-hidden="true">→</span>
+        </button>
+        <div class="success-msg" id="successMsg" role="alert" aria-live="polite">
+          ✓ Message sent! We'll get back to you within 24 hours.
+        </div>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ FAQ ══════════ -->
+<section id="faq" aria-labelledby="faq-heading">
+  <div class="faq-inner">
+    <p class="section-label">Common Questions</p>
+    <h2 class="section-title" id="faq-heading">Frequently Asked Questions</h2>
+    <p class="section-sub">Everything you need to know about EchoSee Smart Glasses.</p>
+
+    <div class="faq-list" role="list">
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq1">
+          What is EchoSee and how does it work?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" id="faq1" role="region">
+          <div class="faq-answer-inner">
+            EchoSee Smart Glasses use an AI-powered chip to capture speech through a noise-cancelling microphone, convert it to text in real time, and project subtitles directly onto the AR lens — so you can read conversations as they happen.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq2">
+          Do EchoSee glasses work offline?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" id="faq2" role="region">
+          <div class="faq-answer-inner">
+            Yes! Our onboard AI processor handles speech-to-text locally, meaning core functionality works without any internet connection. Premium language translation features require connectivity.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq3">
+          What languages are supported?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" id="faq3" role="region">
+          <div class="faq-answer-inner">
+            The basic plan includes Urdu and English. The Premium Plan unlocks 20+ languages with real-time translation, including Arabic, Hindi, French, Spanish, and more — with regular AI updates adding new languages.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq4">
+          How long does the battery last?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" id="faq4" role="region">
+          <div class="faq-answer-inner">
+            EchoSee provides 10–12 hours of continuous use on a single charge — enough for a full working day. The glasses charge via magnetic USB-C in approximately 1.5 hours.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq5">
+          Can I adjust the subtitle font size?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" id="faq5" role="region">
+          <div class="faq-answer-inner">
+            Absolutely. The EchoSee companion app lets you customize font size, color, contrast, and subtitle position directly on the AR lens to suit your individual needs.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq6">
+          What warranty and after-sales support do you offer?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" id="faq6" role="region">
+          <div class="faq-answer-inner">
+            Every pair comes with a 1-year manufacturer warranty covering hardware defects. We also provide regular OTA software updates and a dedicated support team. Accessories are available separately from our shop.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq7">
+          How do I pre-order EchoSee?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" id="faq7" role="region">
+          <div class="faq-answer-inner">
+            Head to our Shop / Pre-Order page, fill in your details and choose your plan. Pre-orders are currently priced at PKR 35,000–40,000. A confirmation email will be sent upon successful order.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq8">
+          What is the emoji-based emotion display feature?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" id="faq8" role="region">
+          <div class="faq-answer-inner">
+            Our AI analyses the tone of speech and overlays contextual emojis alongside your subtitles — letting you pick up on emotions like excitement, sadness, or sarcasm that are easy to miss with text alone.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer aria-labelledby="footer-heading">
+  <h2 id="footer-heading" class="visually-hidden">Site Footer</h2>
+  <div class="footer-grid">
+
+    <!-- Brand -->
+    <div class="footer-brand">
+      <span class="logo">Echo<span>See</span></span>
+      <p>Empowering the hearing-impaired community with AI-driven, real-time subtitles on smart AR glasses.</p>
+      <div class="social-row">
+        <a href="#" class="social-btn" aria-label="Facebook">f</a>
+        <a href="#" class="social-btn" aria-label="Instagram">ig</a>
+        <a href="#" class="social-btn" aria-label="Twitter / X">𝕏</a>
+        <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-col">
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Product</a></li>
+        <li><a href="#">How It Works</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Shop</a></li>
+      </ul>
+    </div>
+
+    <!-- Support -->
+    <div class="footer-col">
+      <h5>Support</h5>
+      <ul>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+        <li><a href="#">Warranty</a></li>
+        <li><a href="#">Software Updates</a></li>
+        <li><a href="#">Accessibility</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="footer-col">
+      <h5>Stay Updated</h5>
+      <p style="color:var(--muted);font-size:.88rem;margin-bottom:1rem;line-height:1.6;">
+        Get launch updates, feature drops and exclusive pre-order deals.
+      </p>
+      <form class="newsletter-form" aria-label="Newsletter signup" novalidate>
+        <div class="nl-input-wrap">
+          <input type="email" placeholder="Your email address" aria-label="Email for newsletter" />
+        </div>
+        <button type="submit" class="nl-btn">Subscribe →</button>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 EchoSee. All rights reserved. Made with ♥ for the hearing-impaired community.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── FAQ Accordion ──
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+      // Toggle clicked
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+    // Keyboard support
+    btn.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
+    });
+  });
+
+  // ── Contact Form Submit ──
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const msg = document.getElementById('successMsg');
+    msg.classList.add('show');
+    this.reset();
+    setTimeout(() => msg.classList.remove('show'), 5000);
+  });
+
+  // ── Newsletter ──
+  document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('.nl-btn');
+    btn.textContent = '✓ Subscribed!';
+    btn.style.background = 'var(--success)';
+    btn.style.color = '#000';
+    setTimeout(() => {
+      btn.textContent = 'Subscribe →';
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 3000);
+    this.reset();
+  });
+</script>
+
+</body>
+</html>
