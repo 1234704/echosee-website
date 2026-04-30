@@ -1,9 +1,11 @@
-import React from 'react'
+import ImpactSection from "./components/MarketAndSocialImpact";
 
 const App = () => {
   return (
-    <div>EchoSee</div>
-  )
-}
+    <main className="bg-black text-white min-h-screen">
+      <ImpactSection />
+    </main>
+  );
+};
 
-export default App
+export default App;
