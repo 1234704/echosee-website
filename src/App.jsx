@@ -1,8 +1,11 @@
 import React from 'react'
+import About from './pages/About'
 
 const App = () => {
   return (
-    <div>EchoSee</div>
+    <div>
+      <About />
+    </div>
   )
 }
 
