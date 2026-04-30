@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+/* Aapka naya theme yahan ayega */
+:root {
+  --bg-deep-navy: #020617;
+  --bg-black: #050505;
+}
+
+body {
+  background-color: var(--bg-black);
+  background-image: radial-gradient(circle at top, var(--bg-deep-navy), var(--bg-black));
+  color: white;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}

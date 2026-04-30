@@ -1,10 +1,16 @@
+import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import Features from './components/Features';
+import Highlights from './components/Highlights';
 
 function App() {
   return (
-    <div className="App">
+    <main className="bg-[#050505] min-h-screen">
+      <Navbar /> 
       <Hero />
-    </div>
+      <Features />
+      <Highlights />
+    </main>
   );
 }
 
