@@ -1,9 +1,15 @@
-import React from 'react'
+import React from 'react';
+import Partnerships from './components/Partnerships';
+import Impact from './components/Impact';
+import './index.css';
 
-const App = () => {
+function App() {
   return (
-    <div>EchoSee</div>
-  )
+    <div>
+      <Partnerships />
+      <Impact />
+    </div>
+  );
 }
 
-export default App
+export default App;
