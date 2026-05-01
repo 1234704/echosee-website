@@ -1,103 +1,553 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>EchoSee – Contact + FAQ + Footer </title>
+  <title>EchoSee – Contact + FAQ + Footer</title>
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy:    #050918;
+      --navy2:   #080d1f;
+      --navy3:   #0b1232;
+      --purple:  #7c3aed;
+      --purple2: #a855f7;
+      --blue:    #3b82f6;
+      --blue2:   #60a5fa;
+      --accent:  linear-gradient(135deg, #7c3aed, #3b82f6);
+      --accent2: linear-gradient(135deg, #a855f7, #60a5fa);
+      --text:    #e2e8f0;
+      --text2:   #94a3b8;
+      --border:  rgba(124,58,237,.25);
+      --card:    rgba(255,255,255,.03);
+      --card2:   rgba(255,255,255,.06);
+      --success: #10b981;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--text);
+      font-family: 'Exo 2', sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ── SHARED ── */
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: .75rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      background: var(--accent2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: .75rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-title span {
+      background: var(--accent2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-sub {
+      color: var(--text2);
+      font-size: 1rem;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+    .visually-hidden {
+      position: absolute;
+      width: 1px; height: 1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+    }
+
+    /* ══ CONTACT ══ */
+    #contact {
+      padding: 6rem 2rem;
+      background: linear-gradient(180deg, var(--navy) 0%, var(--navy3) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    #contact::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(124,58,237,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #contact::after {
+      content: '';
+      position: absolute;
+      bottom: -200px; left: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(59,130,246,.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .contact-wrap { max-width: 1100px; margin: 0 auto; }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    /* Info Panel */
+    .info-panel { display: flex; flex-direction: column; gap: 1.25rem; }
+    .info-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: transform .3s ease, border-color .3s, box-shadow .3s;
+    }
+    .info-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(168,85,247,.5);
+      box-shadow: 0 8px 32px rgba(124,58,237,.15);
+    }
+    .info-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, rgba(124,58,237,.2), rgba(59,130,246,.2));
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .info-card h4 {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--text2);
+      margin-bottom: .2rem;
+      font-family: 'Space Mono', monospace;
+    }
+    .info-card p { color: var(--text); font-size: .95rem; }
+    .social-row { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .35rem; }
+    .social-btn {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text2);
+      text-decoration: none;
+      font-size: .8rem; font-weight: 700;
+      font-family: 'Space Mono', monospace;
+      transition: all .3s;
+      cursor: pointer;
+    }
+    .social-btn:hover {
+      background: linear-gradient(135deg, rgba(124,58,237,.3), rgba(59,130,246,.3));
+      border-color: var(--purple2);
+      color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 20px rgba(124,58,237,.3);
+    }
+
+    /* Form Panel */
+    .form-panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      backdrop-filter: blur(10px);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .field-group { position: relative; }
+    .field-group.full { grid-column: 1 / -1; }
+    .field-group input,
+    .field-group select,
+    .field-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 10px;
+      padding: 1.1rem 1rem .5rem;
+      color: var(--text);
+      font-family: 'Exo 2', sans-serif;
+      font-size: .95rem;
+      outline: none;
+      transition: border-color .3s, box-shadow .3s;
+      -webkit-appearance: none;
+    }
+    .field-group textarea { min-height: 130px; resize: vertical; }
+    .field-group select { padding-top: .85rem; cursor: pointer; }
+    .field-group select option { background: #1a1a2e; color: var(--text); }
+    .field-group input:focus,
+    .field-group select:focus,
+    .field-group textarea:focus {
+      border-color: var(--purple2);
+      box-shadow: 0 0 0 3px rgba(124,58,237,.15);
+    }
+    .field-group label {
+      position: absolute;
+      top: 50%; left: 1rem;
+      transform: translateY(-50%);
+      color: var(--text2);
+      font-size: .9rem;
+      pointer-events: none;
+      transition: all .25s ease;
+    }
+    .field-group textarea ~ label { top: 1.1rem; transform: none; }
+    .field-group input:focus ~ label,
+    .field-group input:not(:placeholder-shown) ~ label,
+    .field-group select:focus ~ label,
+    .field-group textarea:focus ~ label,
+    .field-group textarea:not(:placeholder-shown) ~ label {
+      top: .4rem;
+      transform: none;
+      font-size: .7rem;
+      letter-spacing: .05em;
+      color: var(--purple2);
+    }
+    .btn-submit {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-top: 1.75rem;
+      padding: .95rem 2.5rem;
+      background: var(--accent);
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-family: 'Exo 2', sans-serif;
+      font-size: 1rem; font-weight: 600;
+      cursor: pointer;
+      transition: opacity .3s, transform .3s, box-shadow .3s;
+      letter-spacing: .03em;
+    }
+    .btn-submit:hover {
+      opacity: .9;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(124,58,237,.4);
+    }
+    .btn-submit:active { transform: scale(.98); }
+    .success-msg {
+      display: none;
+      align-items: center;
+      gap: .5rem;
+      margin-top: 1rem;
+      padding: .9rem 1.25rem;
+      background: rgba(16,185,129,.12);
+      border: 1px solid rgba(16,185,129,.3);
+      border-radius: 10px;
+      color: var(--success);
+      font-size: .9rem;
+      animation: fadeSlideIn .4s ease;
+    }
+    .success-msg.show { display: flex; }
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ══ FAQ ══ */
+    #faq {
+      padding: 6rem 2rem;
+      background: linear-gradient(180deg, var(--navy3) 0%, var(--navy2) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    #faq::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(59,130,246,.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .faq-inner { max-width: 820px; margin: 0 auto; }
+    .faq-inner .section-sub { max-width: 100%; margin-bottom: 2.5rem; }
+    .faq-list { display: flex; flex-direction: column; gap: .75rem; }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--card);
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .faq-item.open {
+      border-color: rgba(168,85,247,.5);
+      box-shadow: 0 4px 24px rgba(124,58,237,.12);
+    }
+    .faq-question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 1.5rem;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-family: 'Exo 2', sans-serif;
+      font-size: 1rem; font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      gap: 1rem;
+      transition: color .3s;
+    }
+    .faq-question:hover { color: #c4b5fd; }
+    .faq-icon {
+      width: 28px; height: 28px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--purple2);
+      font-size: 1.2rem;
+      transition: transform .4s cubic-bezier(.34,1.56,.64,1), background .3s, border-color .3s;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      background: linear-gradient(135deg, rgba(124,58,237,.3), rgba(59,130,246,.3));
+      border-color: var(--purple2);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .45s cubic-bezier(.4,0,.2,1);
+    }
+    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-answer-inner {
+      padding: .25rem 1.5rem 1.4rem;
+      color: var(--text2);
+      font-size: .95rem;
+      line-height: 1.75;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ══ FOOTER ══ */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid var(--border);
+      padding: 5rem 2rem 2rem;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1.4fr;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+    .footer-logo {
+      font-size: 1.7rem; font-weight: 900;
+      color: #fff;
+      letter-spacing: -.02em;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .footer-logo span {
+      background: var(--accent2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .footer-brand p {
+      color: var(--text2);
+      font-size: .88rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .footer-col h5 {
+      font-family: 'Space Mono', monospace;
+      font-size: .72rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--text2);
+      margin-bottom: 1.25rem;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+    .footer-col ul li a {
+      color: var(--text2);
+      text-decoration: none;
+      font-size: .9rem;
+      transition: color .25s, padding-left .25s;
+    }
+    .footer-col ul li a:hover { color: var(--blue2); padding-left: 6px; }
+    .footer-col > p {
+      color: var(--text2);
+      font-size: .88rem;
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+    .nl-form { display: flex; flex-direction: column; gap: .6rem; }
+    .nl-input {
+      width: 100%;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: .8rem 1rem;
+      color: var(--text);
+      font-family: 'Exo 2', sans-serif;
+      font-size: .9rem;
+      outline: none;
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .nl-input:focus {
+      border-color: var(--purple2);
+      box-shadow: 0 0 0 3px rgba(124,58,237,.15);
+    }
+    .nl-btn {
+      padding: .75rem 1.25rem;
+      background: var(--accent);
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      font-family: 'Exo 2', sans-serif;
+      font-size: .9rem; font-weight: 600;
+      cursor: pointer;
+      transition: opacity .3s, transform .3s, box-shadow .3s;
+      letter-spacing: .03em;
+    }
+    .nl-btn:hover {
+      opacity: .9;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(124,58,237,.35);
+    }
+    .nl-btn.subscribed {
+      background: linear-gradient(135deg, #10b981, #059669);
+      box-shadow: 0 8px 24px rgba(16,185,129,.3);
+    }
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bottom p { color: var(--text2); font-size: .82rem; }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a {
+      color: var(--text2);
+      text-decoration: none;
+      font-size: .82rem;
+      transition: color .25s;
+    }
+    .footer-bottom-links a:hover { color: var(--blue2); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 580px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .form-panel { padding: 1.5rem; }
+      .faq-question { font-size: .9rem; padding: 1rem 1.1rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
 </head>
 <body>
+
 <!-- ══════════ CONTACT ══════════ -->
 <section id="contact" aria-labelledby="contact-heading">
-  <p class="section-label">Get In Touch</p>
-  <h2 class="section-title" id="contact-heading">Contact Us</h2>
-  <p class="section-sub">Have questions about EchoSee? Our team responds within 24 hours. We'd love to hear from you.</p>
+  <div class="contact-wrap">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-title" id="contact-heading">Contact <span>Us</span></h2>
+    <p class="section-sub">Have questions about EchoSee? Our team responds within 24 hours. We'd love to hear from you.</p>
 
-  <div class="contact-grid">
+    <div class="contact-grid">
+      <!-- Info -->
+      <aside class="info-panel" aria-label="Contact information">
+        <div class="info-card">
+          <div class="info-icon" aria-hidden="true">📧</div>
+          <div><h4>Email</h4><p>hello@echosee.pk</p></div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon" aria-hidden="true">📞</div>
+          <div><h4>Phone</h4><p>+92 300 1234567</p></div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon" aria-hidden="true">📍</div>
+          <div><h4>Address</h4><p>EchoSee HQ, Islamabad, Pakistan</p></div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon" aria-hidden="true">🌐</div>
+          <div>
+            <h4>Follow Us</h4>
+            <div class="social-row">
+              <a href="#" class="social-btn" aria-label="Facebook">f</a>
+              <a href="#" class="social-btn" aria-label="Instagram">ig</a>
+              <a href="#" class="social-btn" aria-label="Twitter / X">𝕏</a>
+              <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
+            </div>
+          </div>
+        </div>
+      </aside>
 
-    <!-- Info -->
-    <aside class="info-panel" aria-label="Contact information">
-      <div class="info-card">
-        <div class="info-icon" aria-hidden="true">📧</div>
-        <div>
-          <h4>Email</h4>
-          <p>hello@echosee.pk</p>
-        </div>
+      <!-- Form -->
+      <div class="form-panel">
+        <form id="contactForm" novalidate aria-label="Send us a message">
+          <div class="form-row">
+            <div class="field-group">
+              <input type="text" id="fname" placeholder=" " autocomplete="given-name" required aria-required="true"/>
+              <label for="fname">First Name</label>
+            </div>
+            <div class="field-group">
+              <input type="text" id="lname" placeholder=" " autocomplete="family-name" required aria-required="true"/>
+              <label for="lname">Last Name</label>
+            </div>
+            <div class="field-group">
+              <input type="email" id="email" placeholder=" " autocomplete="email" required aria-required="true"/>
+              <label for="email">Email Address</label>
+            </div>
+            <div class="field-group">
+              <input type="tel" id="phone" placeholder=" " autocomplete="tel"/>
+              <label for="phone">Phone (optional)</label>
+            </div>
+            <div class="field-group full">
+              <select id="subject" aria-label="Subject">
+                <option value="" disabled selected></option>
+                <option>Pre-Order Enquiry</option>
+                <option>Product Support</option>
+                <option>Partnership</option>
+                <option>Press / Media</option>
+                <option>Other</option>
+              </select>
+              <label for="subject">Subject</label>
+            </div>
+            <div class="field-group full">
+              <textarea id="message" placeholder=" " required aria-required="true"></textarea>
+              <label for="message">Your Message</label>
+            </div>
+          </div>
+          <button type="submit" class="btn-submit">
+            <span>Send Message</span><span aria-hidden="true">→</span>
+          </button>
+          <div class="success-msg" id="successMsg" role="alert" aria-live="polite">
+            ✓ Message sent! We'll get back to you within 24 hours.
+          </div>
+        </form>
       </div>
-      <div class="info-card">
-        <div class="info-icon" aria-hidden="true">📞</div>
-        <div>
-          <h4>Phone</h4>
-          <p>+92 300 1234567</p>
-        </div>
-      </div>
-      <div class="info-card">
-        <div class="info-icon" aria-hidden="true">📍</div>
-        <div>
-          <h4>Address</h4>
-          <p>EchoSee HQ, Islamabad, Pakistan</p>
-        </div>
-      </div>
-      <div class="info-card">
-        <div class="info-icon" aria-hidden="true">🌐</div>
-        <div>
-          <h4>Follow Us</h4>
-          <div class="social-row">
-            <a href="#" class="social-btn" aria-label="Facebook">f</a>
-            <a href="#" class="social-btn" aria-label="Instagram">ig</a>
-            <a href="#" class="social-btn" aria-label="Twitter / X">𝕏</a>
-            <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
-          </div>
-        </div>
-      </div>
-    </aside>
-
-    <!-- Form -->
-    <div class="form-panel">
-      <form id="contactForm" novalidate aria-label="Send us a message">
-        <div class="form-row">
-          <div class="field-group">
-            <input type="text" id="fname" placeholder=" " autocomplete="given-name" required aria-required="true" />
-            <label for="fname">First Name</label>
-          </div>
-          <div class="field-group">
-            <input type="text" id="lname" placeholder=" " autocomplete="family-name" required aria-required="true" />
-            <label for="lname">Last Name</label>
-          </div>
-          <div class="field-group">
-            <input type="email" id="email" placeholder=" " autocomplete="email" required aria-required="true" />
-            <label for="email">Email Address</label>
-          </div>
-          <div class="field-group">
-            <input type="tel" id="phone" placeholder=" " autocomplete="tel" />
-            <label for="phone">Phone (optional)</label>
-          </div>
-          <div class="field-group full">
-            <select id="subject" aria-label="Subject">
-              <option value="" disabled selected></option>
-              <option>Pre-Order Enquiry</option>
-              <option>Product Support</option>
-              <option>Partnership</option>
-              <option>Press / Media</option>
-              <option>Other</option>
-            </select>
-            <label for="subject">Subject</label>
-          </div>
-          <div class="field-group full">
-            <textarea id="message" placeholder=" " required aria-required="true"></textarea>
-            <label for="message">Your Message</label>
-          </div>
-        </div>
-        <button type="submit" class="btn-submit">
-          <span>Send Message</span>
-          <span aria-hidden="true">→</span>
-        </button>
-        <div class="success-msg" id="successMsg" role="alert" aria-live="polite">
-          ✓ Message sent! We'll get back to you within 24 hours.
-        </div>
-      </form>
     </div>
-
   </div>
 </section>
 
@@ -105,7 +555,7 @@
 <section id="faq" aria-labelledby="faq-heading">
   <div class="faq-inner">
     <p class="section-label">Common Questions</p>
-    <h2 class="section-title" id="faq-heading">Frequently Asked Questions</h2>
+    <h2 class="section-title" id="faq-heading">Frequently Asked <span>Questions</span></h2>
     <p class="section-sub">Everything you need to know about EchoSee Smart Glasses.</p>
 
     <div class="faq-list" role="list">
@@ -116,9 +566,7 @@
           <span class="faq-icon" aria-hidden="true">+</span>
         </button>
         <div class="faq-answer" id="faq1" role="region">
-          <div class="faq-answer-inner">
-            EchoSee Smart Glasses use an AI-powered chip to capture speech through a noise-cancelling microphone, convert it to text in real time, and project subtitles directly onto the AR lens — so you can read conversations as they happen.
-          </div>
+          <div class="faq-answer-inner">EchoSee Smart Glasses use an AI-powered chip to capture speech through a noise-cancelling microphone, convert it to text in real time, and project subtitles directly onto the AR lens — so you can read conversations as they happen.</div>
         </div>
       </div>
 
@@ -128,9 +576,7 @@
           <span class="faq-icon" aria-hidden="true">+</span>
         </button>
         <div class="faq-answer" id="faq2" role="region">
-          <div class="faq-answer-inner">
-            Yes! Our onboard AI processor handles speech-to-text locally, meaning core functionality works without any internet connection. Premium language translation features require connectivity.
-          </div>
+          <div class="faq-answer-inner">Yes! Our onboard AI processor handles speech-to-text locally, meaning core functionality works without any internet connection. Premium language translation features require connectivity.</div>
         </div>
       </div>
 
@@ -140,9 +586,7 @@
           <span class="faq-icon" aria-hidden="true">+</span>
         </button>
         <div class="faq-answer" id="faq3" role="region">
-          <div class="faq-answer-inner">
-            The basic plan includes Urdu and English. The Premium Plan unlocks 20+ languages with real-time translation, including Arabic, Hindi, French, Spanish, and more — with regular AI updates adding new languages.
-          </div>
+          <div class="faq-answer-inner">The basic plan includes Urdu and English. The Premium Plan unlocks 20+ languages with real-time translation, including Arabic, Hindi, French, Spanish, and more — with regular AI updates adding new languages.</div>
         </div>
       </div>
 
@@ -152,9 +596,7 @@
           <span class="faq-icon" aria-hidden="true">+</span>
         </button>
         <div class="faq-answer" id="faq4" role="region">
-          <div class="faq-answer-inner">
-            EchoSee provides 10–12 hours of continuous use on a single charge — enough for a full working day. The glasses charge via magnetic USB-C in approximately 1.5 hours.
-          </div>
+          <div class="faq-answer-inner">EchoSee provides 10–12 hours of continuous use on a single charge — enough for a full working day. The glasses charge via magnetic USB-C in approximately 1.5 hours.</div>
         </div>
       </div>
 
@@ -164,9 +606,7 @@
           <span class="faq-icon" aria-hidden="true">+</span>
         </button>
         <div class="faq-answer" id="faq5" role="region">
-          <div class="faq-answer-inner">
-            Absolutely. The EchoSee companion app lets you customize font size, color, contrast, and subtitle position directly on the AR lens to suit your individual needs.
-          </div>
+          <div class="faq-answer-inner">Absolutely. The EchoSee companion app lets you customize font size, color, contrast, and subtitle position directly on the AR lens to suit your individual needs.</div>
         </div>
       </div>
 
@@ -176,9 +616,7 @@
           <span class="faq-icon" aria-hidden="true">+</span>
         </button>
         <div class="faq-answer" id="faq6" role="region">
-          <div class="faq-answer-inner">
-            Every pair comes with a 1-year manufacturer warranty covering hardware defects. We also provide regular OTA software updates and a dedicated support team. Accessories are available separately from our shop.
-          </div>
+          <div class="faq-answer-inner">Every pair comes with a 1-year manufacturer warranty covering hardware defects. We also provide regular OTA software updates and a dedicated support team. Accessories are available separately from our shop.</div>
         </div>
       </div>
 
@@ -188,9 +626,7 @@
           <span class="faq-icon" aria-hidden="true">+</span>
         </button>
         <div class="faq-answer" id="faq7" role="region">
-          <div class="faq-answer-inner">
-            Head to our Shop / Pre-Order page, fill in your details and choose your plan. Pre-orders are currently priced at PKR 35,000–40,000. A confirmation email will be sent upon successful order.
-          </div>
+          <div class="faq-answer-inner">Head to our Shop / Pre-Order page, fill in your details and choose your plan. Pre-orders are currently priced at PKR 35,000–40,000. A confirmation email will be sent upon successful order.</div>
         </div>
       </div>
 
@@ -200,9 +636,7 @@
           <span class="faq-icon" aria-hidden="true">+</span>
         </button>
         <div class="faq-answer" id="faq8" role="region">
-          <div class="faq-answer-inner">
-            Our AI analyses the tone of speech and overlays contextual emojis alongside your subtitles — letting you pick up on emotions like excitement, sadness, or sarcasm that are easy to miss with text alone.
-          </div>
+          <div class="faq-answer-inner">Our AI analyses the tone of speech and overlays contextual emojis alongside your subtitles — letting you pick up on emotions like excitement, sadness, or sarcasm that are easy to miss with text alone.</div>
         </div>
       </div>
 
@@ -213,68 +647,62 @@
 <!-- ══════════ FOOTER ══════════ -->
 <footer aria-labelledby="footer-heading">
   <h2 id="footer-heading" class="visually-hidden">Site Footer</h2>
-  <div class="footer-grid">
+  <div class="footer-inner">
+    <div class="footer-grid">
 
-    <!-- Brand -->
-    <div class="footer-brand">
-      <span class="logo">Echo<span>See</span></span>
-      <p>Empowering the hearing-impaired community with AI-driven, real-time subtitles on smart AR glasses.</p>
-      <div class="social-row">
-        <a href="#" class="social-btn" aria-label="Facebook">f</a>
-        <a href="#" class="social-btn" aria-label="Instagram">ig</a>
-        <a href="#" class="social-btn" aria-label="Twitter / X">𝕏</a>
-        <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
-      </div>
-    </div>
-
-    <!-- Quick Links -->
-    <div class="footer-col">
-      <h5>Quick Links</h5>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Product</a></li>
-        <li><a href="#">How It Works</a></li>
-        <li><a href="#">Pricing</a></li>
-        <li><a href="#">Shop</a></li>
-      </ul>
-    </div>
-
-    <!-- Support -->
-    <div class="footer-col">
-      <h5>Support</h5>
-      <ul>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contact">Contact Us</a></li>
-        <li><a href="#">Warranty</a></li>
-        <li><a href="#">Software Updates</a></li>
-        <li><a href="#">Accessibility</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-      </ul>
-    </div>
-
-    <!-- Newsletter -->
-    <div class="footer-col">
-      <h5>Stay Updated</h5>
-      <p style="color:var(--muted);font-size:.88rem;margin-bottom:1rem;line-height:1.6;">
-        Get launch updates, feature drops and exclusive pre-order deals.
-      </p>
-      <form class="newsletter-form" aria-label="Newsletter signup" novalidate>
-        <div class="nl-input-wrap">
-          <input type="email" placeholder="Your email address" aria-label="Email for newsletter" />
+      <div class="footer-brand">
+        <span class="footer-logo">Echo<span>See</span></span>
+        <p>Empowering the hearing-impaired community with AI-driven, real-time subtitles on smart AR glasses.</p>
+        <div class="social-row">
+          <a href="#" class="social-btn" aria-label="Facebook">f</a>
+          <a href="#" class="social-btn" aria-label="Instagram">ig</a>
+          <a href="#" class="social-btn" aria-label="Twitter / X">𝕏</a>
+          <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
         </div>
-        <button type="submit" class="nl-btn">Subscribe →</button>
-      </form>
+      </div>
+
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Product</a></li>
+          <li><a href="#">How It Works</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Shop</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Support</h5>
+        <ul>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#">Warranty</a></li>
+          <li><a href="#">Software Updates</a></li>
+          <li><a href="#">Accessibility</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Stay Updated</h5>
+        <p>Get launch updates, feature drops and exclusive pre-order deals.</p>
+        <div class="nl-form">
+          <input type="email" class="nl-input" id="nlEmail" placeholder="Your email address" aria-label="Email for newsletter"/>
+          <button class="nl-btn" id="nlBtn" type="button">Subscribe →</button>
+        </div>
+      </div>
+
     </div>
 
-  </div>
-
-  <div class="footer-bottom">
-    <p>© 2025 EchoSee. All rights reserved. Made with ♥ for the hearing-impaired community.</p>
-    <div class="footer-bottom-links">
-      <a href="#">Privacy</a>
-      <a href="#">Terms</a>
-      <a href="#">Cookies</a>
+    <div class="footer-bottom">
+      <p>© 2025 EchoSee. All rights reserved. Made with ♥ for the hearing-impaired community.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Cookies</a>
+      </div>
     </div>
   </div>
 </footer>
@@ -285,18 +713,15 @@
     btn.addEventListener('click', () => {
       const item = btn.closest('.faq-item');
       const isOpen = item.classList.contains('open');
-      // Close all
       document.querySelectorAll('.faq-item').forEach(i => {
         i.classList.remove('open');
         i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
       });
-      // Toggle clicked
       if (!isOpen) {
         item.classList.add('open');
         btn.setAttribute('aria-expanded', 'true');
       }
     });
-    // Keyboard support
     btn.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
     });
@@ -305,25 +730,35 @@
   // ── Contact Form Submit ──
   document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
+    const btn = this.querySelector('.btn-submit');
     const msg = document.getElementById('successMsg');
-    msg.classList.add('show');
-    this.reset();
-    setTimeout(() => msg.classList.remove('show'), 5000);
+    btn.style.opacity = '.7';
+    btn.innerHTML = '<span>Sending…</span><span>⟳</span>';
+    setTimeout(() => {
+      btn.style.opacity = '1';
+      btn.innerHTML = '<span>Send Message</span><span>→</span>';
+      msg.classList.add('show');
+      this.reset();
+      setTimeout(() => msg.classList.remove('show'), 5000);
+    }, 900);
   });
 
   // ── Newsletter ──
-  document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const btn = this.querySelector('.nl-btn');
-    btn.textContent = '✓ Subscribed!';
-    btn.style.background = 'var(--success)';
-    btn.style.color = '#000';
+  document.getElementById('nlBtn').addEventListener('click', function() {
+    const inp = document.getElementById('nlEmail');
+    if (!inp.value || !inp.value.includes('@')) {
+      inp.style.borderColor = 'rgba(239,68,68,.6)';
+      inp.style.boxShadow = '0 0 0 3px rgba(239,68,68,.15)';
+      setTimeout(() => { inp.style.borderColor = ''; inp.style.boxShadow = ''; }, 2000);
+      return;
+    }
+    this.textContent = '✓ Subscribed!';
+    this.classList.add('subscribed');
+    inp.value = '';
     setTimeout(() => {
-      btn.textContent = 'Subscribe →';
-      btn.style.background = '';
-      btn.style.color = '';
+      this.textContent = 'Subscribe →';
+      this.classList.remove('subscribed');
     }, 3000);
-    this.reset();
   });
 </script>
 
