@@ -13,12 +13,12 @@ const Hero = () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: heroRef.current,
-          start: "top center", // Jab section ka top center mein ho
-          toggleActions: "play reverse play reverse", // Scroll up/down dono pe chalega
+          start: "top center", 
+          toggleActions: "play reverse play reverse", 
         }
       });
 
-      // Entrance Pop-up
+      
       tl.from(".hero-element", {
         opacity: 0,
         y: 50,
@@ -28,7 +28,7 @@ const Hero = () => {
         ease: "expo.out",
         clearProps: "transform"
       })
-      // Typing Animation
+      
       .fromTo(taglineRef.current, 
         { width: "0%" }, 
         { 
@@ -45,7 +45,7 @@ const Hero = () => {
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center justify-center bg-[#050505] overflow-hidden font-sans">
       
-      {/* Background Visuals */}
+      
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/60 via-[#050505]/90 to-[#050505] z-10"></div>
         <img 
@@ -88,7 +88,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+   
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-30 flex flex-col items-center gap-2">
         <span className="text-[10px] text-white uppercase tracking-[0.3em] font-bold">Scroll</span>
         <div className="w-[1px] h-10 bg-gradient-to-b from-white to-transparent"></div>

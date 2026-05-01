@@ -10,7 +10,7 @@ const Highlights = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Cards entry animation
+      
       gsap.fromTo(statsRef.current, 
         { opacity: 0, y: 50 },
         { 
@@ -42,7 +42,7 @@ const Highlights = () => {
       ref={scrollRef} 
       className="py-24 bg-[#020617] border-t border-white/5 relative overflow-hidden"
     >
-      {/* Subtle Background Glow */}
+      
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-purple-600/5 blur-[120px] rounded-full"></div>
 
       <div className="container mx-auto px-6 relative z-10">

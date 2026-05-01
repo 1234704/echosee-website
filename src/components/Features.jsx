@@ -11,7 +11,7 @@ const Features = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Heading Animation
+      
       gsap.fromTo(".features-header", 
         { opacity: 0, y: 30 },
         { 
@@ -26,7 +26,7 @@ const Features = () => {
         }
       );
 
-      // Cards Initial Load Animation
+      
       gsap.fromTo(cardsRef.current, 
         { opacity: 0, scale: 0.9, y: 30 }, 
         { 
@@ -92,23 +92,23 @@ const Features = () => {
               ref={el => cardsRef.current[i] = el}
               className="group relative"
             >
-              {/* Animated Glow Border */}
+              
               <div className={`absolute -inset-[1px] bg-gradient-to-b ${f.gradient} rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
               
-              {/* Card Body */}
+              
               <div className="relative h-full p-10 rounded-[2.5rem] bg-[#0a0a0a] border border-white/5 transition-all duration-500 group-hover:bg-[#0f0f0f] flex flex-col justify-center overflow-hidden">
                 
-                {/* Icon Container - Minimalist */}
+                
                 <div className="w-14 h-14 flex items-center justify-center rounded-2xl bg-white/5 mb-8 group-hover:scale-110 group-hover:bg-purple-500/10 transition-all duration-500">
                   {f.icon}
                 </div>
                 
-                {/* Title - Bold & Professional */}
+
                 <h3 className="text-2xl font-black text-white mb-2 tracking-tight uppercase group-hover:text-purple-400 transition-colors">
                   {f.title}
                 </h3>
                 
-                {/* POP-UP DESCRIPTION EFFECT[cite: 1] */}
+                
                 <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out opacity-0 group-hover:opacity-100">
                   <div className="overflow-hidden">
                     <p className="text-gray-400 text-base leading-relaxed pt-4 font-light border-t border-white/5 mt-4">
@@ -117,7 +117,7 @@ const Features = () => {
                   </div>
                 </div>
 
-                {/* Subtle Arrow Indicator - Bottom Right[cite: 1] */}
+                
                 <div className="absolute bottom-8 right-8 opacity-0 group-hover:opacity-20 transition-opacity">
                   <Target size={40} className="rotate-45" />
                 </div>
@@ -127,7 +127,7 @@ const Features = () => {
         </div>
       </div>
 
-      {/* Background Accent Glow[cite: 1] */}
+      
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-purple-900/5 blur-[120px] rounded-full -z-10"></div>
     </section>
   );
