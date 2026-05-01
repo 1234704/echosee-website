@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Type, Smile, Globe2, WifiOff, MicOff, Glasses, Cpu, Battery, Play, X } from 'lucide-react';
+import ArLensDemo from './ArLensDemo'; 
 
 const features = [
   { icon: <Type className="w-6 h-6" />, title: "Real-time Transcription", desc: "Instant speech-to-text displayed directly on your AR lens." },
@@ -43,7 +44,7 @@ const ProductPage = () => {
           </p>
         </div>
 
-        
+       
         <div className="mb-32">
           <h2 className="text-2xl font-bold mb-8 border-b border-slate-800 pb-4 text-cyan-400">Core Features</h2>
           <motion.div 
@@ -74,6 +75,9 @@ const ProductPage = () => {
         </div>
 
         
+        <ArLensDemo />
+
+       
         <div className="mb-32">
           <h2 className="text-2xl font-bold mb-8 border-b border-slate-800 pb-4 text-cyan-400">Hardware Specifications</h2>
           <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8 lg:p-12 flex flex-col md:flex-row gap-12 items-center overflow-hidden">
@@ -112,7 +116,7 @@ const ProductPage = () => {
           </div>
         </div>
 
-        
+       
         <div className="mb-12 relative rounded-3xl overflow-hidden bg-slate-900 border border-slate-800 p-8 text-center flex flex-col items-center justify-center min-h-[400px]">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20 mix-blend-luminosity"></div>
           <div className="relative z-10">
@@ -129,7 +133,7 @@ const ProductPage = () => {
           </div>
         </div>
 
-        
+       
         <AnimatePresence>
           {isVideoOpen && (
             <motion.div 
