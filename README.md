@@ -1,16 +1,28 @@
-# React + Vite
+# EchoSee Smart Glasses - UI/UX Architecture
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, accessibility-first frontend build for EchoSee Smart Glasses. Designed with a futuristic, AR-inspired aesthetic to clearly explain the product, create an emotional connection, and drive pre-orders.
 
-Currently, two official plugins are available:
+##  Tech Stack
+* **Frontend:** React.js, Vite
+* **Styling:** Tailwind CSS (Dark Mode / High Contrast for Accessibility)
+* **Animations:** Framer Motion
+* **Icons:** Lucide React
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+##  Core Features Developed (Product & Pricing Domains)
+1. **Dynamic Features Grid:** Scalable mapping of hardware capabilities.
+2. **AR Lens Simulator (Mock Demo):** A custom-engineered React component simulating real-time speech-to-text with a dynamic typing effect and blinking cursor.
+3. **Interactive Pricing Engine:** Toggle between Monthly/Annual billing with instant state-driven price updates.
+4. **After-Sales Support Accordion:** Accessible, space-saving FAQ layout.
 
-## React Compiler
+##  Animation & Micro-Interaction List
+As per the project brief, the following GSAP/Framer Motion interactions were successfully implemented:
+* **Staggered Reveal:** Hardware specifications slide in sequentially (`staggerChildren`) upon scrolling into view.
+* **Micro-Bounce & Emoji Pop:** Feature cards scale up on hover (`scale: 1.05`), with a specific rotational "pop" animation triggered specifically for the Emoji feature card.
+* **Infinite 360° Rotation:** Smooth, continuous motion on the hardware model placeholder.
+* **Modal Scale-Up:** `AnimatePresence` utilized for smooth scaling and fading of the Prototype Video Demo modal.
+* **Hover Lifts & Glow:** Pricing cards lift (`y: -12`) on hover, with a custom CSS box-shadow glow applied to the Premium tier.
+* **Accordion Expand:** Smooth height transitions (`height: "auto"`) combined with a 45-degree icon rotation upon opening support details.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 👨 Primary Contributor
+**Shahar Yar** - Frontend Engineering (Product & Pricing Sections)
+*Branch:* `feature/shahar-product-pricing`
