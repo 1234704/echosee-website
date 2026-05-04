@@ -2,7 +2,8 @@ import { User, ChevronDown } from 'lucide-react';
 
 const Navbar = () => {
   return (
-    <nav className="fixed top-0 left-0 w-full z-[100] px-6 md:px-16 py-5 bg-[#050505]/40 backdrop-blur-xl border-b border-white/5 flex items-center justify-between">
+    <nav className="fixed top-0 left-0 w-full z-[100] px-6 md:px-16 py-5 flex items-center justify-between transition-all duration-500 ease-in-out bg-transparent border-b border-transparent hover:bg-[#050505]/80 hover:backdrop-blur-xl hover:border-white/5">
+      
       <div className="flex items-center gap-3 group cursor-pointer">
         <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/20 group-hover:rotate-12 transition-transform">
           <span className="text-white font-black text-xl tracking-tighter">E</span>

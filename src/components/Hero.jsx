@@ -18,7 +18,6 @@ const Hero = () => {
         }
       });
 
-      
       tl.from(".hero-element", {
         opacity: 0,
         y: 50,
@@ -43,15 +42,24 @@ const Hero = () => {
   }, []);
 
   return (
-    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center bg-[#050505] overflow-hidden font-sans">
+    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden font-sans">
       
       
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/60 via-[#050505]/90 to-[#050505] z-10"></div>
+      <div className="absolute inset-0 w-full h-full z-0">
+        
+        <div className="absolute inset-0 bg-black/60 z-10"></div>
+        
         <img 
-          src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=2000" 
+          
+          src="/bg-hero.jpg.jpeg" 
           alt="EchoSee Smart Glasses" 
-          className="w-full h-full object-cover opacity-30 scale-105"
+          className="w-full h-full object-cover"
+          onError={(e) => {
+         
+             if (e.target.src.includes('.jpeg')) {
+                e.target.src = "/bg-hero.jpg";
+             }
+          }}
         />
       </div>
 
@@ -68,7 +76,7 @@ const Hero = () => {
           </div>
         </div>
 
-        <p className="hero-element text-gray-400 text-lg md:text-2xl max-w-2xl mx-auto mb-16 font-light tracking-wide leading-relaxed">
+        <p className="hero-element text-gray-200 text-lg md:text-2xl max-w-2xl mx-auto mb-16 font-light tracking-wide leading-relaxed drop-shadow-2xl">
           The next generation of Smart Glasses. Transcribing the world in 
           real-time with AR-inspired precision.
         </p>
@@ -77,19 +85,17 @@ const Hero = () => {
           <button className="group relative px-14 py-5 bg-white text-black text-base font-black rounded-full overflow-hidden transition-all duration-500 hover:text-white active:scale-95 z-30">
             <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
             <span className="relative z-10">Pre-Order Now</span>
-            <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_50px_rgba(147,51,234,0.4)] transition-all duration-700"></div>
           </button>
           
-          <div className="hidden sm:block w-[1px] h-14 bg-white/10 mx-10"></div>
+          <div className="hidden sm:block w-[1px] h-14 bg-white/20 mx-10"></div>
           
-          <button className="px-14 py-5 border-2 border-white/10 text-white text-base font-bold rounded-full hover:bg-white/10 backdrop-blur-xl transition-all active:scale-95 z-30">
+          <button className="px-14 py-5 border-2 border-white/20 text-white text-base font-bold rounded-full hover:bg-white/10 backdrop-blur-xl transition-all active:scale-95 z-30">
             Learn More
           </button>
         </div>
       </div>
 
-   
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-30 flex flex-col items-center gap-2">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-50 flex flex-col items-center gap-2">
         <span className="text-[10px] text-white uppercase tracking-[0.3em] font-bold">Scroll</span>
         <div className="w-[1px] h-10 bg-gradient-to-b from-white to-transparent"></div>
       </div>
