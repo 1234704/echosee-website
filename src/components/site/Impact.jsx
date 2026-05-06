@@ -23,21 +23,40 @@ const Counter = ({ to, suffix = "" }) => {
     return () => cancelAnimationFrame(raf);
   }, [inView, to]);
 
-  return <span ref={ref}>{n.toLocaleString()}{suffix}</span>;
+  return (
+    <span ref={ref}>
+      {n.toLocaleString()}
+      {suffix}
+    </span>
+  );
 };
 
 const stats = [
-  { icon: Globe2, value: 430, suffix: "M+", label: "people globally with hearing loss" },
+  {
+    icon: Globe2,
+    value: 430,
+    suffix: "M+",
+    label: "people globally with hearing loss",
+  },
   { icon: Users, value: 20, suffix: "M+", label: "affected in Pakistan alone" },
-  { icon: Activity, value: 95, suffix: "%", label: "of users want a non-stigmatising solution" },
+  {
+    icon: Activity,
+    value: 95,
+    suffix: "%",
+    label: "of users want a non-stigmatising solution",
+  },
 ];
 
 export const Impact = () => (
-  <section id="impact" className="py-24 relative">
+  <section id="impact" className="py-24 relative bg-black">
     <div className="container-pad">
       <SectionHeader
         eyebrow="Market & impact"
-        title={<>A movement, <span className="gradient-text">not a product</span></>}
+        title={
+          <>
+            A movement, <span className="gradient-text">not a product</span>
+          </>
+        }
         description="The numbers behind the silence — and our chance to change them."
       />
 
@@ -62,10 +81,12 @@ export const Impact = () => (
 
       <Reveal>
         <div className="glass-card p-8 md:p-12 text-center">
-          <h3 className="font-display text-2xl md:text-3xl font-bold">Our target users</h3>
+          <h3 className="font-display text-2xl md:text-3xl font-bold">
+            Our target users
+          </h3>
           <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
-            Students, professionals, parents, and elders — anyone who deserves to follow every word
-            in a noisy, fast-moving world.
+            Students, professionals, parents, and elders — anyone who deserves
+            to follow every word in a noisy, fast-moving world.
           </p>
         </div>
       </Reveal>

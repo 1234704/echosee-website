@@ -1,5 +1,7 @@
 import { Navbar } from "@/components/site/Navbar";
 import { Hero } from "@/components/site/Hero";
+import Features from "@/components/site/Features";
+import AnalyticsGrid from "@/components/site/AnalyticsGrid";
 import { Highlights } from "@/components/site/Highlights";
 import { About } from "@/components/site/About";
 import { Product } from "@/components/site/Product";
@@ -49,6 +51,8 @@ const Index = () => {
       <Navbar />
       <main id="home">
         <Hero />
+        <Features />
+        <AnalyticsGrid />
         <Highlights />
         <About />
         <Product />

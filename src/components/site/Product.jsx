@@ -5,10 +5,19 @@ import { Cpu, Mic, Camera, BatteryCharging, Eye, Sparkles } from "lucide-react";
 import glassesSide from "@/assets/glasses-side.jpg";
 
 const features = [
-  { title: "Real-time transcription", desc: "Sub-200ms latency from speech to lens." },
-  { title: "Adjustable font size", desc: "Three comfort presets in a quick gesture." },
+  {
+    title: "Real-time transcription",
+    desc: "Sub-200ms latency from speech to lens.",
+  },
+  {
+    title: "Adjustable font size",
+    desc: "Three comfort presets in a quick gesture.",
+  },
   { title: "Emoji subtitles", desc: "Tone and emotion at a glance." },
-  { title: "20+ languages", desc: "Live translation across Urdu, English & more." },
+  {
+    title: "20+ languages",
+    desc: "Live translation across Urdu, English & more.",
+  },
   { title: "Offline AI", desc: "Private, fast, network-free processing." },
   { title: "Noise cancelling", desc: "Focus on the speaker, drop the crowd." },
 ];
@@ -31,16 +40,23 @@ const demoLines = [
 export const Product = () => {
   const [idx, setIdx] = useState(0);
   useEffect(() => {
-    const id = setInterval(() => setIdx((i) => (i + 1) % demoLines.length), 2400);
+    const id = setInterval(
+      () => setIdx((i) => (i + 1) % demoLines.length),
+      2400,
+    );
     return () => clearInterval(id);
   }, []);
 
   return (
-    <section id="product" className="py-24 relative">
+    <section id="product" className="py-24 relative bg-black">
       <div className="container-pad">
         <SectionHeader
           eyebrow="The product"
-          title={<>Engineered for <span className="gradient-text">clarity</span></>}
+          title={
+            <>
+              Engineered for <span className="gradient-text">clarity</span>
+            </>
+          }
           description="Every component handpicked for comfort, speed, and beautiful, accessible communication."
         />
 
@@ -56,9 +72,13 @@ export const Product = () => {
             >
               <div className="flex items-center gap-3 text-primary">
                 <Sparkles className="w-4 h-4 transition-transform group-hover:rotate-12" />
-                <span className="font-mono text-xs uppercase tracking-widest">Feature</span>
+                <span className="font-mono text-xs uppercase tracking-widest">
+                  Feature
+                </span>
               </div>
-              <h3 className="mt-3 font-display font-semibold text-xl">{f.title}</h3>
+              <h3 className="mt-3 font-display font-semibold text-xl">
+                {f.title}
+              </h3>
               <p className="mt-2 text-muted-foreground text-sm">{f.desc}</p>
             </motion.li>
           ))}
@@ -80,20 +100,28 @@ export const Product = () => {
 
           <div>
             <Reveal>
-              <h3 className="font-display text-3xl font-bold">Live subtitle demo</h3>
-              <p className="mt-3 text-muted-foreground">A glimpse of what wearers see, in real time.</p>
+              <h3 className="font-display text-3xl font-bold">
+                Live subtitle demo
+              </h3>
+              <p className="mt-3 text-muted-foreground">
+                A glimpse of what wearers see, in real time.
+              </p>
             </Reveal>
 
             <div className="mt-8 glass-card p-6 border-primary/30">
               <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-primary">
-                <span className="w-2 h-2 rounded-full bg-primary pulse-dot" /> Lens preview
+                <span className="w-2 h-2 rounded-full bg-primary pulse-dot" />{" "}
+                Lens preview
               </div>
               <div className="mt-4 min-h-[120px] grid">
                 {demoLines.map((l, i) => (
                   <motion.div
                     key={l.text}
                     initial={false}
-                    animate={{ opacity: i === idx ? 1 : 0, y: i === idx ? 0 : 10 }}
+                    animate={{
+                      opacity: i === idx ? 1 : 0,
+                      y: i === idx ? 0 : 10,
+                    }}
                     transition={{ duration: 0.5 }}
                     className="row-start-1 col-start-1"
                   >
@@ -103,7 +131,11 @@ export const Product = () => {
                         key={l.emoji + i + idx}
                         initial={{ scale: 0, rotate: -30 }}
                         animate={{ scale: i === idx ? 1 : 0, rotate: 0 }}
-                        transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 15,
+                        }}
                         className="inline-block"
                         aria-hidden
                       >

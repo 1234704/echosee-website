@@ -1,6 +1,15 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Mail, Phone, MapPin, Twitter, Instagram, Linkedin, Send, Check } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Twitter,
+  Instagram,
+  Linkedin,
+  Send,
+  Check,
+} from "lucide-react";
 import { Button } from "./Button";
 import { SectionHeader } from "./Reveal";
 import { toast } from "./toast";
@@ -16,17 +25,36 @@ const ContactRow = ({ icon: Icon, label, value }) => (
       <Icon className="w-5 h-5" />
     </div>
     <div>
-      <p className="text-xs uppercase tracking-widest text-muted-foreground font-mono">{label}</p>
+      <p className="text-xs uppercase tracking-widest text-muted-foreground font-mono">
+        {label}
+      </p>
       <p className="font-medium">{value}</p>
     </div>
   </motion.div>
 );
 
-const FloatField = ({ label, name, type = "text", textarea = false }) => {
-  const [val, setVal] = useState("");
+const FloatField = ({
+  label,
+  name,
+  type = "text",
+  textarea = false,
+  value,
+  onChange,
+}) => {
+  const [uncontrolledValue, setUncontrolledValue] = useState("");
   const [focused, setFocused] = useState(false);
+  const val = value !== undefined ? value : uncontrolledValue;
   const float = focused || val.length > 0;
   const Comp = textarea ? "textarea" : "input";
+
+  const handleChange = (e) => {
+    if (onChange) {
+      onChange(e);
+    } else {
+      setUncontrolledValue(e.target.value);
+    }
+  };
+
   return (
     <div className="relative">
       <Comp
@@ -34,7 +62,7 @@ const FloatField = ({ label, name, type = "text", textarea = false }) => {
         name={name}
         type={type}
         value={val}
-        onChange={(e) => setVal(e.target.value)}
+        onChange={handleChange}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         rows={textarea ? 4 : undefined}
@@ -43,7 +71,9 @@ const FloatField = ({ label, name, type = "text", textarea = false }) => {
       <label
         htmlFor={name}
         className={`absolute left-4 transition-all pointer-events-none ${
-          float ? "top-1.5 text-xs text-primary" : "top-4 text-sm text-muted-foreground"
+          float
+            ? "top-1.5 text-xs text-primary"
+            : "top-4 text-sm text-muted-foreground"
         }`}
       >
         {label}
@@ -53,25 +83,49 @@ const FloatField = ({ label, name, type = "text", textarea = false }) => {
 };
 
 export const Contact = () => {
+  const initialFormState = {
+    name: "",
+    email: "",
+    message: "",
+  };
+  const [form, setForm] = useState(initialFormState);
+  const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
 
   const submit = (e) => {
     e.preventDefault();
-    setSent(true);
-    toast({ title: "Message sent!", description: "We’ll get back to you within 24 hours." });
-    setTimeout(() => setSent(false), 3500);
+    if (loading) return;
+
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setSent(true);
+      setForm(initialFormState);
+      toast({
+        title: "Message sent!",
+        description: "We’ll get back to you within 24 hours.",
+      });
+      setTimeout(() => setSent(false), 3500);
+    }, 2400);
   };
 
   return (
-    <section id="contact" className="py-24 relative">
+    <section id="contact" className="py-24 relative bg-black">
       <div className="container-pad">
-        <SectionHeader eyebrow="Contact" title={<>Let's <span className="gradient-text">talk</span></>} />
+        <SectionHeader
+          eyebrow="Contact"
+          title={
+            <>
+              Let's <span className="gradient-text">talk</span>
+            </>
+          }
+        />
 
         <div className="grid lg:grid-cols-2 gap-10 max-w-5xl mx-auto">
           <div className="space-y-6">
             <ContactRow icon={Mail} label="Email" value="hello@echosee.io" />
             <ContactRow icon={Phone} label="Phone" value="+92 300 1234567" />
-            <ContactRow icon={MapPin} label="HQ" value="Lahore, Pakistan" />
+            <ContactRow icon={MapPin} label="HQ" value="Islamabad, Pakistan" />
 
             <div className="flex gap-3 pt-4">
               {[Twitter, Instagram, Linkedin].map((Icon, i) => (
@@ -88,17 +142,52 @@ export const Contact = () => {
           </div>
 
           <form onSubmit={submit} className="glass-card p-8 space-y-5">
-            <FloatField label="Name" name="cname" />
-            <FloatField label="Email" name="cemail" type="email" />
-            <FloatField label="Message" name="cmsg" textarea />
-            <Button type="submit" variant="hero" size="lg" className="w-full">
+            <FloatField
+              label="Name"
+              name="cname"
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+            />
+            <FloatField
+              label="Email"
+              name="cemail"
+              type="email"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+            />
+            <FloatField
+              label="Message"
+              name="cmsg"
+              textarea
+              value={form.message}
+              onChange={(e) => setForm({ ...form, message: e.target.value })}
+            />
+            <Button
+              type="submit"
+              variant="hero"
+              size="lg"
+              className="w-full"
+              disabled={loading}
+            >
               <motion.span
-                key={sent ? "ok" : "send"}
+                key={sent ? "ok" : loading ? "loading" : "send"}
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 className="flex items-center gap-2"
               >
-                {sent ? (<><Check className="w-5 h-5" /> Sent!</>) : (<><Send className="w-5 h-5" /> Send message</>)}
+                {sent ? (
+                  <>
+                    <Check className="w-5 h-5" /> Sent!
+                  </>
+                ) : loading ? (
+                  <>
+                    <Send className="w-5 h-5 animate-spin" /> Sending…
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5" /> Send message
+                  </>
+                )}
               </motion.span>
             </Button>
           </form>

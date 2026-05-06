@@ -24,20 +24,29 @@ export const Hero = () => {
   }, [typed === ""]);
 
   return (
-    <section id="home" className="relative pt-28 md:pt-36 pb-20 overflow-hidden">
-      <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" aria-hidden />
-      <div className="absolute inset-0 aura-bg opacity-40 pointer-events-none" aria-hidden />
+    <section
+      id="home"
+      className="relative pt-28 md:pt-36 pb-20 overflow-hidden bg-black"
+    >
+      <div
+        className="absolute inset-0 bg-grid opacity-20 pointer-events-none"
+        aria-hidden
+      />
+      <div
+        className="absolute inset-0 aura-bg opacity-40 pointer-events-none"
+        aria-hidden
+      />
 
       <div className="container-pad grid lg:grid-cols-2 gap-12 items-center relative">
         <div>
-          <motion.span
+          {/* <motion.span
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card text-xs font-medium text-primary"
           >
             <Sparkles className="w-3.5 h-3.5" /> AR-Powered Subtitles
-          </motion.span>
+          </motion.span> */}
 
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
@@ -54,8 +63,8 @@ export const Hero = () => {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="mt-6 text-lg md:text-xl text-muted-foreground max-w-xl text-balance"
           >
-            EchoSee Smart Glasses turn every conversation into real-time AR subtitles —
-            empowering the deaf and hard-of-hearing community with effortless, beautiful clarity.
+            The next generation of Smart Glasses. Transcribing the world in
+            real-time with AR-inspired precision.
           </motion.p>
 
           <motion.div
@@ -65,7 +74,9 @@ export const Hero = () => {
             className="mt-10 flex flex-wrap gap-4"
           >
             <Button variant="hero" size="xl" asChild>
-              <a href="#preorder">Pre-Order Now <ArrowRight className="w-4 h-4" /></a>
+              <a href="#preorder">
+                Pre-Order Now <ArrowRight className="w-4 h-4" />
+              </a>
             </Button>
             <Button variant="outlineGlow" size="xl" asChild>
               <a href="#product">Learn More</a>
@@ -104,7 +115,8 @@ export const Hero = () => {
             <div className="absolute left-1/2 -translate-x-1/2 bottom-6 w-[88%] max-w-md">
               <div className="glass-card px-4 py-3 border border-primary/40 shadow-glow">
                 <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-primary mb-1 font-mono">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary pulse-dot" /> Live caption
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary pulse-dot" />{" "}
+                  Live caption
                 </div>
                 <p className="font-mono text-sm md:text-base text-foreground min-h-[1.5em]">
                   {typed}

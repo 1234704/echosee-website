@@ -3,38 +3,71 @@ import { useState } from "react";
 import { Check, Sparkles, Shield, RefreshCw, Package } from "lucide-react";
 import { Button } from "./Button";
 import { SectionHeader } from "./Reveal";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./Accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "./Accordion";
 
 const plans = {
   basic: {
     name: "Basic",
     price: "PKR 35,000",
     note: "One-time purchase",
-    features: ["Real-time English & Urdu subtitles", "Adjustable font size", "Emoji emotion display", "Offline AI", "12-month warranty"],
+    features: [
+      "Real-time English & Urdu subtitles",
+      "Adjustable font size",
+      "Emoji emotion display",
+      "Offline AI",
+      "12-month warranty",
+    ],
   },
   premium: {
     name: "Premium",
     price: "PKR 40,000",
     note: "+ subscription",
-    features: ["Everything in Basic", "20+ language live translation", "Continuous AI updates", "Future cloud sync", "Priority support"],
+    features: [
+      "Everything in Basic",
+      "20+ language live translation",
+      "Continuous AI updates",
+      "Future cloud sync",
+      "Priority support",
+    ],
   },
 };
 
 const services = [
-  { icon: Shield, title: "Warranty", text: "12-month standard warranty with extended options." },
-  { icon: RefreshCw, title: "Software updates", text: "Continuous improvements to translation & accuracy." },
-  { icon: Package, title: "Accessories", text: "Cases, replacement nose pads, USB-C cables." },
+  {
+    icon: Shield,
+    title: "Warranty",
+    text: "12-month standard warranty with extended options.",
+  },
+  {
+    icon: RefreshCw,
+    title: "Software updates",
+    text: "Continuous improvements to translation & accuracy.",
+  },
+  {
+    icon: Package,
+    title: "Accessories",
+    text: "Cases, replacement nose pads, USB-C cables.",
+  },
 ];
 
 export const Pricing = () => {
   const [active, setActive] = useState("premium");
 
   return (
-    <section id="pricing" className="py-24 relative">
+    <section id="pricing" className="py-24 relative bg-black">
       <div className="container-pad">
         <SectionHeader
           eyebrow="Pricing"
-          title={<>Simple, <span className="gradient-text">honest</span> pricing</>}
+          title={
+            <>
+              Simple, <span className="gradient-text">honest</span> pricing
+            </>
+          }
           description="Choose the plan that fits your world. Upgrade any time."
         />
 
@@ -45,7 +78,9 @@ export const Pricing = () => {
                 key={p}
                 onClick={() => setActive(p)}
                 className={`px-5 py-2 rounded-md text-sm font-medium transition-all ${
-                  active === p ? "bg-gradient-primary text-primary-foreground shadow-glow" : "text-muted-foreground hover:text-foreground"
+                  active === p
+                    ? "bg-gradient-primary text-primary-foreground shadow-glow"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {p === "basic" ? "Basic" : "Premium ⭐"}
@@ -78,19 +113,29 @@ export const Pricing = () => {
                 )}
                 <h3 className="font-display text-2xl font-bold">{plan.name}</h3>
                 <div className="mt-3 flex items-baseline gap-2">
-                  <span className="font-display text-4xl font-bold gradient-text">{plan.price}</span>
+                  <span className="font-display text-4xl font-bold gradient-text">
+                    {plan.price}
+                  </span>
                 </div>
                 <p className="text-sm text-muted-foreground">{plan.note}</p>
 
                 <ul className="mt-6 space-y-3">
                   {plan.features.map((f) => (
                     <li key={f} className="flex items-start gap-3 text-sm">
-                      <Check className="w-4 h-4 mt-0.5 text-primary shrink-0" aria-hidden />
+                      <Check
+                        className="w-4 h-4 mt-0.5 text-primary shrink-0"
+                        aria-hidden
+                      />
                       <span>{f}</span>
                     </li>
                   ))}
                 </ul>
-                <Button variant={isActive ? "hero" : "outlineGlow"} size="lg" className="w-full mt-8" asChild>
+                <Button
+                  variant={isActive ? "hero" : "outlineGlow"}
+                  size="lg"
+                  className="w-full mt-8"
+                  asChild
+                >
                   <a href="#preorder">Choose {plan.name}</a>
                 </Button>
               </motion.div>
@@ -99,17 +144,28 @@ export const Pricing = () => {
         </div>
 
         <div className="max-w-3xl mx-auto mt-20">
-          <h3 className="text-center font-display text-2xl font-bold mb-6">After-sales services</h3>
+          <h3 className="text-center font-display text-2xl font-bold mb-6">
+            After-sales services
+          </h3>
           <Accordion type="single" collapsible className="space-y-3">
             {services.map((s) => (
-              <AccordionItem key={s.title} value={s.title} className="glass-card border-border px-5">
+              <AccordionItem
+                key={s.title}
+                value={s.title}
+                className="glass-card border-border px-5"
+              >
                 <AccordionTrigger className="hover:no-underline group">
                   <span className="flex items-center gap-3">
-                    <s.icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" aria-hidden />
+                    <s.icon
+                      className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors"
+                      aria-hidden
+                    />
                     <span className="font-medium">{s.title}</span>
                   </span>
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">{s.text}</AccordionContent>
+                <AccordionContent className="text-muted-foreground">
+                  {s.text}
+                </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
